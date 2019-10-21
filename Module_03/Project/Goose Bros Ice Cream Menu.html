@@ -1,0 +1,168 @@
+<html>
+  <head>
+    <title>Goose Bros Ice Cream Menu</title>
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <style>
+        * {
+          box-sizing: border-box;
+        }
+
+        .column {float: left; padding: 10px;}
+        .column2 {float: left; padding: 5px;}
+        .left {width: 30%;}
+        .right {width: 70%;}
+
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+      </style>
+
+      <style>
+        ul {
+          list-style-type: none;
+          margin: 10;
+          padding:10;
+          overflow: hidden;
+          background-color: #FDB26C;
+        }
+
+        li {
+          float: left;
+        }
+
+        li a {
+          display: block;
+          color: black;
+          text-align: center;
+          padding: 10px 50px;
+          text-decoration: none;
+        }
+
+        li a:hover {
+          background-color: #FFCC9C;
+        }
+      </style>
+
+      <style>
+        img {float: left;}
+      </style>
+
+  </head>
+  <body style="background-color:lightblue;">
+
+    <div class="column left">
+      <div class="row">
+        <img src="Logo.JPG" alt="logo" style="width:100%">
+      </div>
+
+      <div class="row" style="background-color:#FDB26C;">
+        <h3 align=middle>
+          Seasonal Flavors
+        </h3>
+
+        <?php
+        include ('mod3_config.php');
+        include ('mod3_opendb.php');
+
+        $sql= "SELECT Flavor Name, Start Date, End Date From flavors";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0){
+          while ($row = mysqli_fetch_acssoc($result)) {
+            echo .$row["Flavor Name"]. "<br>";
+            echo .$row["Start Date"]. "<br>";
+            echo .$row["End Date"]. "<br><hr>";
+          }
+        }else {
+            echo "0 results";
+        }
+
+        mysqli_close($conn);
+
+        ?>
+      </div>
+    </div>
+
+    <div class="column right">
+      <div class="row">
+        <ul>
+          <li><a class="active" href="#home">Home</a></li>
+          <li><a href="#news">Menu</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">Careers</a></li>
+        </ul>
+      </div>
+
+      <div class="row">
+        <div class="column left">
+         <h2 style="background-color:#FDB26C;" align=middle>
+           Sizes
+         </h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column2">
+          <h4>
+            Single
+          </h4>
+          <p>
+           <img src="One Scoop.JPG" alt="One Scoop"
+           style="width:150px;height:200px;margin-right:15px;">
+         </p>
+        </div>
+        <div class="column2">
+          <h4>
+            Double
+          </h4>
+          <p>
+           <img src="Two Scoops.JPG" alt="Two Scoops"
+           style="width:150px;height:200px;margin-right:15px;">
+          </p>
+        </div>
+        <div class="column2">
+          <h4>
+            Triple
+          </h4>
+          <p>
+           <img src="Three Scoops.JPG" alt="Three Scoops"
+           style="width:150px;height:200px;margin-right:15px;">
+          </p>
+        </div>
+        <div class="column2">
+          <h4>
+            Waffle
+          </h4>
+          <p>
+           <img src="Waffle Cone.JPG" alt="Waffle Cone"
+           style="width:150px;height:200px;margin-right:15px;">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column left">
+          <h2 style="background-color:#FDB26C;" align=middle>
+            Flavors
+          </h2>
+          <p>
+            Vanilla
+          </p>
+          <p>
+            Chocklate
+          </p>
+          <p>
+            Bananna
+          </p>
+          <p>
+            Strawberry
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
